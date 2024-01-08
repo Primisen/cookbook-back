@@ -1,8 +1,17 @@
+CREATE TABLE IF NOT EXISTS users
+(
+    id   BIGSERIAL PRIMARY KEY,
+    name VARCHAR(16) NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS recipe
 (
     id          BIGSERIAL PRIMARY KEY,
     title       VARCHAR(45) NOT NULL,
-    instruction TEXT        NOT NULL
+    instruction TEXT        NOT NULL,
+    author_id   BIGINT,
+
+    FOREIGN KEY (author_id) REFERENCES users (id)
 );
 
 CREATE TABLE IF NOT EXISTS ingredient
@@ -18,10 +27,4 @@ CREATE TABLE IF NOT EXISTS ingredient_recipe
 
     FOREIGN KEY (ingredient_id) REFERENCES ingredient (id),
     FOREIGN KEY (recipe_id) REFERENCES recipe (id)
-);
-
-CREATE TABLE IF NOT EXISTS users
-(
-    id   BIGSERIAL PRIMARY KEY,
-    name VARCHAR(16) NOT NULL
 );

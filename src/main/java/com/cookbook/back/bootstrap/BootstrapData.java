@@ -48,6 +48,18 @@ public class BootstrapData implements CommandLineRunner {
 
         roastedPotatoesSaved.getIngredients().add(potatoSaved);
         caramelSaved.getIngredients().add(sugarSaved);
+        potatoSaved.getRecipes().add(roastedPotatoesSaved);
+        sugarSaved.getRecipes().add(caramelSaved);
+
+        ingredientRepository.save(potatoSaved);
+        ingredientRepository.save(sugarSaved);
+
+        User igor = new User();
+        igor.setName("Igor");
+        User savedIgor = userRepository.save(igor);
+
+        roastedPotatoesSaved.setAuthor(savedIgor);
+        caramelSaved.setAuthor(savedIgor);
 
         recipeRepository.save(roastedPotatoesSaved);
         recipeRepository.save(caramelSaved);
@@ -56,10 +68,7 @@ public class BootstrapData implements CommandLineRunner {
         System.out.println("Recipe Count: " + recipeRepository.count());
         System.out.println("Ingredient Count: " + ingredientRepository.count());
 
-        User igor = new User();
-        igor.setName("Igor");
 
-        userRepository.save(igor);
 
         System.out.println("User Count: " + userRepository.count());
     }
