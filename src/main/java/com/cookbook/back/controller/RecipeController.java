@@ -3,7 +3,6 @@ package com.cookbook.back.controller;
 import com.cookbook.back.domain.Recipe;
 import com.cookbook.back.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +17,7 @@ public class RecipeController {
     }
 
     @RequestMapping("/recipes")
-    public Iterable<Recipe> getRecipes(Model model) {
+    public Iterable<Recipe> getRecipes() {
         return recipeService.findAll();
     }
 }
