@@ -1,9 +1,9 @@
 package com.cookbook.back.repository;
 
-import com.cookbook.back.domain.Recipe;
+import com.cookbook.back.domain.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RecipeRepository extends CrudRepository<Recipe, Long> {
+public interface UserRepository extends CrudRepository<User, Long> {
 }

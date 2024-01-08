@@ -2,8 +2,10 @@ package com.cookbook.back.bootstrap;
 
 import com.cookbook.back.domain.Ingredient;
 import com.cookbook.back.domain.Recipe;
+import com.cookbook.back.domain.User;
 import com.cookbook.back.repository.IngredientRepository;
 import com.cookbook.back.repository.RecipeRepository;
+import com.cookbook.back.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +14,14 @@ public class BootstrapData implements CommandLineRunner {
 
     private final IngredientRepository ingredientRepository;
     private final RecipeRepository recipeRepository;
+    private final UserRepository userRepository;
 
-    public BootstrapData(IngredientRepository ingredientRepository, RecipeRepository recipeRepository) {
+    public BootstrapData(IngredientRepository ingredientRepository,
+                         RecipeRepository recipeRepository,
+                         UserRepository userRepository) {
         this.ingredientRepository = ingredientRepository;
         this.recipeRepository = recipeRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -49,5 +55,12 @@ public class BootstrapData implements CommandLineRunner {
         System.out.println("In Bootstrap");
         System.out.println("Recipe Count: " + recipeRepository.count());
         System.out.println("Ingredient Count: " + ingredientRepository.count());
+
+        User igor = new User();
+        igor.setName("Igor");
+
+        userRepository.save(igor);
+
+        System.out.println("User Count: " + userRepository.count());
     }
 }
